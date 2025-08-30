@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Nuevo pedido</h3>
+<form method="post" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label">Cliente</label>
+    <input name="customer_name" class="form-control" placeholder="Nombre del cliente" required>
+  </div>
+  <div class="col-12">
+    <h5 class="mt-3">Ítems</h5>
+    <table class="table table-sm align-middle">
+      <thead><tr><th>Producto</th><th>Talla</th><th>Color</th><th>Precio</th><th>Stock</th><th>Cantidad</th></tr></thead>
+      <tbody>
+        {% for v in variants %}
+        <tr>
+          <td>{{ v.product.name }}</td>
+          <td>{{ v.size }}</td>
+          <td>{{ v.color }}</td>
+          <td>${{ '%.2f'|format(v.price) }}</td>
+          <td>{{ v.stock }}</td>
+          <td style="max-width:120px">
+            <input class="form-control form-control-sm" type="number" min="0" max="{{ v.stock }}" name="qty_{{ v.id }}" value="0">
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Crear pedido</button>
+  </div>
+</form>
+{% endblock %}

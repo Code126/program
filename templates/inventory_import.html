@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Importar inventario desde Excel</h3>
+<p>Descarga primero la <a href="{{ url_for('export_template') }}">plantilla</a>, complétala y súbela aquí.</p>
+<form method="post" enctype="multipart/form-data" class="row g-3">
+  <div class="col-12">
+    <input class="form-control" type="file" name="file" accept=".xlsx" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Importar</button>
+  </div>
+</form>
+{% endblock %}

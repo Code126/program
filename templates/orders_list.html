@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Pedidos</h3>
+  <a class="btn btn-primary" href="{{ url_for('orders_new') }}">Nuevo pedido</a>
+</div>
+<table class="table table-striped">
+  <thead><tr><th>#</th><th>Fecha</th><th>Cliente</th><th>Ítems</th></tr></thead>
+  <tbody>
+  {% for o in orders %}
+    <tr>
+      <td>{{ o.order_number }}</td>
+      <td>{{ o.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td>{{ o.customer_name }}</td>
+      <td>
+        <ul class="m-0">
+          {% for it in o.items %}
+          <li>{{ it.variant.product.name }} {{ it.variant.size }}/{{ it.variant.color }} × {{ it.quantity }} @ ${{ '%.2f'|format(it.unit_price) }}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

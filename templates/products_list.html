@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Productos</h3>
+  <a class="btn btn-primary" href="{{ url_for('products_new') }}">Nuevo producto</a>
+</div>
+<table class="table table-striped">
+  <thead><tr><th>SKU</th><th>Nombre</th><th>Tipo</th><th>Variantes</th><th></th></tr></thead>
+  <tbody>
+    {% for p in products %}
+    <tr>
+      <td>{{ p.sku }}</td>
+      <td>{{ p.name }}</td>
+      <td><span class="badge bg-secondary">{{ p.product_type.name }}</span></td>
+      <td>{{ p.variants|length }}</td>
+      <td><a class="btn btn-sm btn-outline-success" href="{{ url_for('variants_new', product_id=p.id) }}">+ Variante</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

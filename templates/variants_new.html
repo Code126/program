@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Nueva variante para: {{ product.name }} ({{ product.product_type.name }})</h3>
+<form method="post" class="row g-3">
+  <div class="col-md-3">
+    <label class="form-label">Talla</label>
+    <input name="size" class="form-control" required>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Color</label>
+    <input name="color" class="form-control" required>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Precio</label>
+    <input name="price" type="number" step="0.01" class="form-control" required>
+  </div>
+  <div class="col-md-3">
+    <label class="form-label">Stock inicial</label>
+    <input name="stock" type="number" class="form-control" value="0">
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">Crear variante</button>
+  </div>
+</form>
+{% endblock %}
